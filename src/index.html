@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minni's Babey ❤︎</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Press Start 2P', cursive;
+            background: linear-gradient(45deg, #d7ccc8, #c7a69b);
+            text-align: center;
+            overflow-y: auto; 
+        }
+        #content-wrapper { 
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;   
+            min-height: 100vh;    
+        }
+        .page {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        h1 {
+            font-size: 3em;
+            color: #3e2723;
+            margin-top: 20vh;
+        }
+        .sub-text {
+            font-size: 1.2em;
+            color: #6d4c41;
+        }
+        .button {
+            padding: 12px 24px;
+            background-color: #a1887f;
+            border: none;
+            border-radius: 30px;
+            font-size: 1em;
+            color: #FFF;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background-color 0.3s;
+            font-family: 'Press Start 2P', cursive;
+        }
+        .button:hover {
+            background-color: #8d6e63;
+        }
+        .gift {
+            display: none;
+            margin-top: 20px;
+            animation: popIn 1s ease;
+        }
+        .gift img {
+            width: 200px;
+            height: 200px;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        .buttons-container {
+            margin-top: 30px;
+        }
+        .button-container-button {
+            padding: 12px 24px;
+            background-color: #a1887f;
+            border: none;
+            border-radius: 30px;
+            font-size: 1em;
+            color: #FFF;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+            font-family: 'Press Start 2P', cursive;
+        }
+        .button-container-button:hover {
+            background-color: #8d6e63;
+        }
+        .reasons {
+            font-size: 1.2em;
+            color: #3e2723;
+            margin-top: 20px;
+        }
+
+        .letter-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f4e1d2;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+            max-height: 60vh; 
+            border-radius: 8px;
+            overflow-y: auto;
+        }
+
+        .letter-container p {
+            font-size: 0.9em; 
+            color: #3e2723;
+            line-height: 1.4;
+        }
+
+        .letter-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .letter-container::-webkit-scrollbar-thumb {
+            background-color: #a1887f;
+            border-radius: 10px;
+        }
+
+        .letter-container::-webkit-scrollbar-thumb:hover {
+            background-color: #8d6e63;
+        }
+
+        .letter-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .close-btn {
+            background-color: #a1887f;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .close-btn:hover {
+            background-color: #8d6e63;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #a1887f;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #8d6e63;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        #toTopBtn {
+            position: fixed;
+            bottom: 20px; 
+            right: 20px; 
+            background-color: #a1887f;
+            color: white;
+            border: none;
+            border-radius: 20%;
+            padding: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #toTopBtn:hover {
+            background-color: #8d6e63;
+        }
+
+        #toTopBtn.hidden {
+            display: none;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        .confetti {
+            position: fixed; 
+            z-index: 1000; 
+            pointer-events: none; 
+            will-change: transform; 
+
+            top: 0;
+            width: 10px;
+            height: 10px;
+            animation: confetti-fall linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1 -->
+    <div id="content-wrapper">
+      <div id="page1" class="page active">
+          <p>Heyy Babeyy!</p>
+          <button class="button" onclick="nextPage(2)">Hiee</button>
+      </div>
+
+      <!-- Page 2 -->
+      <div id="page2" class="page">
+          <p>Hiee my cute birthday boy</p>
+          <button class="button" onclick="nextPage(3)"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+
+      <!-- Page 3 -->
+      <div id="page3" class="page">
+          <p>Okay okay we're almost there hehehehe</p>
+          <button class="button" onclick="nextPage(4)">Finally</button>
+      </div>
+
+      <!-- Page 4 (Main Page) -->
+      <div id="page4" class="page">
+          <h1>Happy Birthday, Dipesh!</h1>
+          <p class="sub-text">You're my everything 🥳</p>
+          <button class="button" onclick="openGift()">Open Gift</button>
+
+      <div id="gift" class="gift">
+          <img src="img/gift.png" alt="gift">
+          <p class="gift-message">Surprise! 💖</p>
+          <p class="gift-message">Yes, I'm your gift.</p>
+      </div>
+
+      <div class="buttons-container">
+          <button id="reasonButton" class="button-container-button" onclick="showReasons()">100 Reasons Why I Love You</button>
+          
+          <button class="button" onclick="openLetter()">Open me last!!</button>
+
+          <div id="letterContainer" class="letter-container">
+              <button class="close-btn" onclick="closeLetter()"><i class="fa-solid fa-xmark"></i></button>
+              <h2>Dear Dipesh,</h2>
+              <p>My cutest, I just wanted to take a moment to tell you how much you mean to me. Every time I see your smile, my heart skips a beat. The way you laugh, the way you look at me, it's like you're my best friend and my soulmate all in one. I feel so incredibly lucky to have you in my life. </p>
+
+              <p>There are so many little moments that make me think of you. Whether it's a simple text, a song we love, or just a memory we've shared, I cherish it all. I can't wait for all the new memories we'll create together.</p>
+
+              <p>It’s been a long time since we started talking, but it feels like just yesterday. My feelings for you still feel new. I still get butterflies, still blush when I think of you, and I still smile whenever you’re mentioned. Everything feels fresh and new. I can’t believe how far we’ve come. I still can’t believe it—the journey from noticing each other, to talking for the first time, to me liking you without expecting to get this close, to me confessing, and you entering my life, to us liking each other, and finally falling in love. And here we are now.</p>
+
+              <p>We've been through so much in these few months, with all the ups and downs, yet we’re still standing strong. The fact that I fall more in love with you every day is amazing. I just want to thank you for coming into my life and making it so much better. Happy birthday, my love! I hope I can continue to be this excited about your birthday for many more years. I hope my love and prayers reach you. I wish you a happy and healthy life ahead, with me by your side, of course.</p>
+                
+              <p>Happy birthday! I love you. I love you more than yesterday, and I’ll love you more tomorrow than today. I love you to the moon and back, and I’ll love you until my last breath.</p>
+
+              <p>You're the light to my soul.
+                You're the rhythm to my heartbeat.
+                You're the spark to my fire.
+                You're the melody to my song.
+                You're the peace to my mind.
+                You're the joy to my world.
+                You're the warmth to my winter.
+                You're the love to my life.
+                You're the dream to my reality.
+                You're the calm to my storm.</p>
+
+              <p>Thank you for being the amazing person you are, and for filling my life with so much happiness. I love you more than words can say. ❤️</p>
+
+              <p>Forever yours,</p>
+              <p>Minni</p>
+          </div>
+      </div>
+
+      <div id="reasons" class="reasons" style="display: none;">
+        <p>1. Your smile</p>
+        <p>2. Your hair</p>
+        <p>3. Your laugh</p>
+        <p>4. Your lips when you're talking</p>
+        <p>5. Your lips when they kiss me</p>
+        <p>6. Your skin</p>
+        <p>7. Your teeth</p>
+        <p>8. Your humor</p>
+        <p>9. Your eyes, sparkling every time you look at me</p>
+        <p>10. Your confidence</p>
+        <p>11. Your strength</p>
+        <p>12. Your honesty</p>
+        <p>13. Your kindness</p>
+        <p>14. Your voice</p>
+        <p>15. Your voice when you're sleepy</p>
+        <p>16. Your voice when you just wake up</p>
+        <p>17. Your voice when you have a sore throat</p>
+        <p>18. Your support when I need you</p>
+        <p>19. Your ability to make everything better</p>
+        <p>20. Your ability to make me laugh when I'm sad</p>
+        <p>21. Your ability to make everything feel effortless and simple</p>
+        <p>22. Your attitude towards me</p>
+        <p>23. Your energy</p>
+        <p>24. Your big heart</p>
+        <p>25. Your warmth</p>
+        <p>26. Your charm</p>
+        <p>27. Your stupidity</p>
+        <p>28. Your positive energy</p>
+        <p>29. Your patience</p>
+        <p>30. Your courage</p>
+        <p>31. Your forgiving heart</p>
+        <p>32. Your warm hugs</p>
+        <p>33. Your adorable kisses</p>
+        <p>34. Your touch</p>
+        <p>35. Your presence</p>
+        <p>36. Your love for your family</p>
+        <p>37. Your love for your friends</p>
+        <p>38. Your love for me</p>
+        <p>39. Your appreciation</p>
+        <p>40. Your soul</p>
+        <p>41. Your belief in me</p>
+        <p>42. Your playful nature</p>
+        <p>43. Your passion for what you love</p>
+        <p>44. Your compliments</p>
+        <p>45. Your little jokes</p>
+        <p>46. Your funny poems</p>
+        <p>47. Your random talks</p>
+        <p>48. Your self-care</p>
+        <p>49. Your silliness</p>
+        <p>50. Your advice</p>
+        <p>51. Your cuteness</p>
+        <p>52. Your flaws</p>
+        <p>53. Your childlike nature</p>
+        <p>54. Your maturity</p>
+        <p>55. Your manners</p>
+        <p>56. Your seriousness</p>
+        <p>57. Your scent</p>
+        <p>58. Your comforting words</p>
+        <p>59. Your actions</p>
+        <p>60. Your loud snores</p>
+        <p>61. Your cooking</p>
+        <p>62. Your accomplishments</p>
+        <p>63. Your warm gestures</p>
+        <p>64. Your company</p>
+        <p>65. Your concern for me</p>
+        <p>66. Your calmness towards me</p>
+        <p>67. You're pretty</p>
+        <p>68. You're handsome</p>
+        <p>69. You're the one who makes my heart skip a beat</p>
+        <p>70. You're the one I can't wait to share everything with</p>
+        <p>71. You're the one who makes every moment special</p>
+        <p>72. You're my heart's desire</p>
+        <p>73. You're my favorite person to be around</p>
+        <p>74. You're funny</p>
+        <p>75. You're smart</p>
+        <p>76. You're unique</p>
+        <p>77. You're caring</p>
+        <p>78. You're gentle with me</p>
+        <p>79. You're intelligent</p>
+        <p>80. You're amazing</p>
+        <p>81. Our conversations</p>
+        <p>82. Our connection</p>
+        <p>83. Our bond that only grows stronger</p>
+        <p>84. Our home dates</p>
+        <p>85. Our lunch dates</p>
+        <p>86. Our meets</p>
+        <p>87. Our cuddles</p>
+        <p>88. Our laughter</p>
+        <p>89. Our eye contacts</p>
+        <p>90. You, for remembering the little details about me</p>
+        <p>91. You, when you listen and do what I ask of you</p>
+        <p>92. You, saying the things I love to hear</p>
+        <p>93. You, video calling me, sharing about your day, and falling asleep on the call</p>
+        <p>94. You, buying me snacks I love without me even asking</p>
+        <p>95. You, holding onto my arm while we walk</p>
+        <p>96. You, giving me love bites and leaving marks on me</p>
+        <p>97. You, never getting tired of me or annoyed by me</p>
+        <p>98. You, changing yourself to make us work and treat me better</p>
+        <p>99. Your entire existence</p>
+        <p style="margin-bottom: 30px;">100. YOU</p>      
+      </div>
+
+      <audio id="bgMusic" src="music/blue.mp3" loop autoplay></audio>
+    </div>
+    <button id="toTopBtn" class="hidden" onclick="scrollToTop()"><i class="fa-solid fa-circle-arrow-up"></i></button>
+    </div>
+
+    <script>
+        function nextPage(pageNumber) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById('page' + pageNumber).classList.add('active');
+
+            if (pageNumber === 4) {
+                triggerConfetti();
+            }
+        }
+
+        function triggerConfetti() {
+            for (let i = 0; i < 50; i++) {
+                let confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                confetti.style.backgroundColor = randomColor();
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 4000); 
+            }
+        }
+
+        function randomColor() {
+            const colors = ["#FF69B4", "#FFD700", "#00BFFF"];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        const giftElement = document.getElementById('gift');
+        
+
+        function openGift() {
+            giftElement.style.display = 'block'; 
+            const openGiftButton = document.querySelector('button[onclick="openGift()"]'); 
+            openGiftButton.style.display = 'none';  
+        }
+
+
+        function showReasons() {
+            const reasonsElement = document.getElementById('reasons');
+            const reasonButton = document.getElementById('reasonButton');
+            reasonsElement.style.display = 'block';
+            reasonButton.style.display = 'none';
+        }
+
+        function openLetter() {
+            document.getElementById('letterContainer').style.display = 'block';
+        }
+
+        function closeLetter() {
+            document.getElementById('letterContainer').style.display = 'none';
+        }
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("toTopBtn").classList.remove("hidden");
+            } else {
+                document.getElementById("toTopBtn").classList.add("hidden");
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+    </script>
+</body>
+</html>
