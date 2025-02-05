@@ -383,11 +383,12 @@
     </div>
 
     <script>
-        window.onload = () => {
-            const audio = new Audio("music/blue.mp3");
-            audio.play().catch(error => console.log("Autoplay blocked:", error));
-        };
-
+        document.addEventListener("click", () => {
+            const audio = document.getElementById("birthdaySong");
+            if (audio.paused) {
+                audio.play().catch(error => console.log("Error playing audio:", error));
+            }
+        });
         
         function nextPage(pageNumber) {
             document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
